@@ -1,0 +1,33 @@
+{
+    "name":"cbcommerce",
+    "version":"@build.version@",
+    "author":"Ortus Solutions, Corp",
+    "location":"https://downloads.ortussolutions.com/ortussolutions/coldbox-modules/cbcommerce/@build.version@/cbcommerce-@build.version@.zip",
+    "homepage":"https://cbcommerce.ortusbooks.com",
+    "documentation":"https://cbcommerce.ortusbooks.com",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/coldbox-modules/cbcommerce"
+    },
+    "bugs":"https://github.com/coldbox-modules/cbcommerce/issues",
+    "slug":"cbcommerce",
+    "shortDescription":"An e-commerce module for the coldbox platform",
+    "description":"An e-commerce module for the coldbox platform",
+    "type":"modules",
+    "dependencies":{
+        "cbcommerce-api" : "be",
+        "cbcommerce-admin" : "be",
+        "cbcommerce-ui" : "be"
+    },
+    "devDependencies":{},
+    "installPaths":{
+        "cbcommerce-api" : "modules/cbcommerce-api",
+        "cbcommerce-admin" : "modules/cbcommerce-admin",
+        "cbcommerce-ui" : "modules/cbcommerce-ui"
+    },
+    "ignore":[
+        "**/.*",
+        "test-harness",
+        "*/.md"
+    ]
+}
