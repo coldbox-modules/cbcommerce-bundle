@@ -69,7 +69,7 @@ jobs:
 
       - name: Publish To ForgeBox
         run: |
-          cd .artifacts/${{ env.MODULE_ID }}
+          cd ${GITHUB_WORKSPACE}/.artifacts/${{ env.MODULE_ID }}
           cat box.json
           box forgebox publish
       - name: Inform Slack
