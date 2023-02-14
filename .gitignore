@@ -16,6 +16,7 @@ test-harness/modules/**
 modules/**
 
 # Development artifacts
+changelog-latest.md
 node_modules
 includes/fonts
 includes/css
