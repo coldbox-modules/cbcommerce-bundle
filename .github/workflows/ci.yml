@@ -1,4 +1,4 @@
-name: cbCommerce Bundle CI
+name: cbcommerce CI
 
 # Only on Development we build snapshots
 on:
@@ -12,25 +12,25 @@ env:
 
 jobs:
   #############################################
-  # Build cbCommerce
+  # Build Module
   #############################################
   build:
     name: Build & Publish
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.2.0
         with:
           fetch-depth: 0
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3.9.0
         with:
-          distribution: "adopt"
+          distribution: "temurin"
           java-version: "11"
 
       - name: Setup CommandBox
-        uses: Ortus-Solutions/setup-commandbox@main
+        uses: Ortus-Solutions/setup-commandbox@v2.0.1
         with:
           forgeboxAPIKey: ${{ secrets.FORGEBOX_TOKEN }}
 
@@ -39,23 +39,27 @@ jobs:
         run: |
           echo "VERSION=`cat box.json | jq '.version' -r`" >> $GITHUB_ENV
           box package set version=@build.version@+@build.number@
-          # master or snapshot
+          # main or snapshot
           echo "Github Ref is $GITHUB_REF"
-          echo "BRANCH=master" >> $GITHUB_ENV
+          echo "BRANCH=main" >> $GITHUB_ENV
           if [ $GITHUB_REF == 'refs/heads/development' ]
           then
             echo "BRANCH=development" >> $GITHUB_ENV
           fi
+
       - name: Build ${{ env.MODULE_ID }}
         run: |
+          box install commandbox-docbox
           box task run taskfile=build/Build target=run :version=${{ env.VERSION }} :projectName=${{ env.MODULE_ID }} :buildID=${{ github.run_number }} :branch=${{ env.BRANCH }}
+
       - name: Upload Build Artifacts
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: ${{ env.MODULE_ID }}
           path: |
             .artifacts/**/*
+
       - name: Upload Binaries to S3
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -69,9 +73,10 @@ jobs:
 
       - name: Publish To ForgeBox
         run: |
-          cd ${GITHUB_WORKSPACE}/.tmp
+          cd .tmp/${{ env.MODULE_ID }}
           cat box.json
           box forgebox publish
+
       - name: Inform Slack
         if: ${{ always() }}
         uses: rtCamp/action-slack-notify@v2
