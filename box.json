@@ -2,7 +2,7 @@
     "name":"cbCommerce Bundle",
     "version":"0.0.1",
     "author":"Ortus Solutions, Corp",
-    "location":"https://downloads.ortussolutions.com/ortussolutions/coldbox-modules/cbcommerce/@build.version@/cbcommerce-@build.version@.zip",
+    "location":"https://downloads.ortussolutions.com/ortussolutions/coldbox-modules/cbcommerce/@build.version@/cbcommerce-@build.version@+@build.number@.zip",
     "homepage":"https://cbcommerce.ortusbooks.com",
     "documentation":"https://cbcommerce.ortusbooks.com",
     "repository":{
