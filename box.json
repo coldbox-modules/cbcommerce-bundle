@@ -1,6 +1,6 @@
 {
     "name":"cbCommerce Bundle",
-    "version":"0.0.1",
+    "version":"1.0.0",
     "author":"Ortus Solutions, Corp",
     "location":"https://downloads.ortussolutions.com/ortussolutions/coldbox-modules/cbcommerce/@build.version@/cbcommerce-@build.version@+@build.number@.zip",
     "homepage":"https://cbcommerce.ortusbooks.com",
@@ -15,9 +15,9 @@
     "description":"An e-commerce module for the coldbox platform",
     "type":"modules",
     "dependencies":{
-        "cbcommerce-api" : "be",
-        "cbcommerce-admin" : "be",
-        "cbcommerce-ui" : "be"
+        "cbcommerce-api" : "1.0.0",
+        "cbcommerce-admin" : "1.0.0",
+        "cbcommerce-ui" : "1.0.0"
     },
     "devDependencies":{},
     "installPaths":{
